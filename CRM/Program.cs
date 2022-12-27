@@ -6,48 +6,45 @@ internal class Program
     {
         var users = new List<User>();
 
-        Console.WriteLine("Hello, would you like to create a user? Yes/No\n");
-        var yesOrNo = Console.ReadLine();
 
-        if (yesOrNo.Equals("yes", StringComparison.OrdinalIgnoreCase))
+        Console.WriteLine("Welcome to the C# CRM :) \n");
+
+        Console.WriteLine("Please choose one of the following options: ");
+        Console.WriteLine("Add");
+        Console.WriteLine("Remove");
+        Console.WriteLine("List Users");
+
+        var newUser = new User();
+
+        switch (Console.ReadLine())
         {
-            Console.WriteLine("Great, let's begin\n");
-            Console.WriteLine("Please enter your first name: ");
-            var newUser = new User();
-            newUser.Id = Guid.NewGuid();
-            newUser.FirstName = Console.ReadLine();
-            
-            Console.WriteLine("Your last name? ");
-            newUser.LastName = Console.ReadLine();
 
-            Console.WriteLine("What is a good email adress? ");
-            newUser.Email = Console.ReadLine();
+            case "Add":
+                Console.WriteLine("Great, let's begin\n");
+                Console.WriteLine("Please enter your first name: ");
+                
+                newUser.Id = Guid.NewGuid();
+                newUser.FirstName = Console.ReadLine();
 
-            Console.WriteLine("Age? ");
-            newUser.Age = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Your last name? ");
+                newUser.LastName = Console.ReadLine();
 
-            Console.WriteLine("DOB? ");
-            newUser.DateOfBirth = Console.ReadLine();
-            users.Add(newUser);
+                Console.WriteLine("What is a good email adress? ");
+                newUser.Email = Console.ReadLine();
 
-            Console.WriteLine("Would you like to keep the user you created? yes/no");
-            var keepOrNot = Console.ReadLine();
+                Console.WriteLine("Age? ");
+                newUser.Age = Convert.ToInt32(Console.ReadLine());
 
-
-            if (keepOrNot.Equals("yes", StringComparison.OrdinalIgnoreCase))
-            {
+                Console.WriteLine("DOB? ");
+                newUser.DateOfBirth = Console.ReadLine();
                 users.Add(newUser);
-            }
-            else
-            {
+                break;
+
+            case "Remove":
                 users.Remove(newUser);
-            }
+                break;
 
-            Console.WriteLine("Would you like to see all users? yes/no");
-            var showUsers = Console.ReadLine();
-
-            if (showUsers.Equals("yes", StringComparison.OrdinalIgnoreCase))
-            {
+            case "List Users":
                 foreach (var user in users)
                 {
                     Console.WriteLine("\nUser ID: " + user.Id);
@@ -56,12 +53,10 @@ internal class Program
                     Console.WriteLine("Date of birth: " + user.DateOfBirth);
                     Console.WriteLine("Email: " + user.Email);
                 }
-            }
-
+                break;
 
         }
-
-
         Console.ReadKey();
-    }
+
+    }  
 }
