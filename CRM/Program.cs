@@ -4,28 +4,29 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var users = new List<User>();
-        
+                var users = new List<User>();
 
         Console.WriteLine("Welcome to the C# CRM :) \n");
         Console.WriteLine("Press any key to continue");
-        string key = Console.ReadLine();   
-        
+        Console.ReadLine();
 
-        var newUser = new User();
-        
-         while(key == "")  
+        bool quitProgram = false;
+        while (quitProgram == false)
         {
+            var newUser = new User();
 
             Console.WriteLine("Please choose one of the following options: ");
             Console.WriteLine("Add");
             Console.WriteLine("Remove");
-            Console.WriteLine("List Users");
+            Console.WriteLine("List");
+            Console.WriteLine("Quit");
 
-            switch (Console.ReadLine())
+            var input = Console.ReadLine();
+            input = input?.ToLower();
+
+            switch (input)
             {
-
-                case "Add":
+                case "add":
                     Console.WriteLine("Great, let's begin\n");
                     Console.WriteLine("Please enter your first name: ");
 
@@ -46,11 +47,11 @@ internal class Program
                     users.Add(newUser);
                     break;
 
-                case "Remove":
+                case "remove":
                     users.Remove(newUser);
                     break;
 
-                case "List Users":
+                case "list":
                     foreach (var user in users)
                     {
                         Console.WriteLine("\nUser ID: " + user.Id);
@@ -60,30 +61,14 @@ internal class Program
                         Console.WriteLine("Email: " + user.Email);
                     }
                     break;
+
+                case "quit":
+                    Console.WriteLine("Thank you see you next time ;) ");
+                    quitProgram = true;
+                    break;
             }
-
-            Console.WriteLine("Would you like to do any other action? yes/no");
-            string yseNo = Console.ReadLine();
-
-            if (yseNo.Equals("yes"))
-            {
-
-                Console.WriteLine("Add");
-                Console.WriteLine("Remove");
-                Console.WriteLine("List Users");
-            }
-            else
-            {
-                Console.WriteLine("Thank you see you next time ;) ");
-                break;
-            }
-
         }
-        
-
-
 
         Console.ReadKey();
-
     }  
 }
