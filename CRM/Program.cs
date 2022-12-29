@@ -5,21 +5,22 @@ internal class Program
     private static void Main(string[] args)
     {
         var users = new List<User>();
-
+        
 
         Console.WriteLine("Welcome to the C# CRM :) \n");
-
-        Console.WriteLine("Please choose one of the following options: ");
-        Console.WriteLine("Add");
-        Console.WriteLine("Remove");
-        Console.WriteLine("List Users");
-      
+        Console.WriteLine("Press any key to continue");
+        string key = Console.ReadLine();   
         
 
         var newUser = new User();
         
-     while(true)
+         while(key == "")  
         {
+
+            Console.WriteLine("Please choose one of the following options: ");
+            Console.WriteLine("Add");
+            Console.WriteLine("Remove");
+            Console.WriteLine("List Users");
 
             switch (Console.ReadLine())
             {
@@ -74,12 +75,14 @@ internal class Program
             else
             {
                 Console.WriteLine("Thank you see you next time ;) ");
+                break;
             }
-        }
-            
 
+        }
         
-        
+
+
+
         Console.ReadKey();
 
     }  
